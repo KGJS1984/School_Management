@@ -68,18 +68,30 @@ function deleteFee(index) {
 function printReceipt(index) {
 
     let fees = JSON.parse(localStorage.getItem("fees")) || [];
-
     let f = fees[index];
 
     let w = window.open("", "", "width=600,height=700");
 
     w.document.write(`
-    <h2 style="text-align:center">
-    Gobindaganj KG & Junior School
-    </h2>
+        <h2 style="text-align:center">Gobindaganj KG & Junior School</h2>
+        <hr>
 
-    <hr>
+        <h3>Fee Receipt</h3>
 
-    <h3>Fee Receipt</h3>
+        <p><b>Student:</b> ${f.studentName}</p>
+        <p><b>Class:</b> ${f.studentClass}</p>
+        <p><b>Month:</b> ${f.month}</p>
+        <p><b>Amount:</b> ৳${f.amount}</p>
+        <p><b>Payment:</b> ${f.paymentMethod}</p>
+        <p><b>Receipt No:</b> ${f.receiptNo}</p>
+        <p><b>Date:</b> ${f.date}</p>
 
-    <
+        <br><br>
+        <p>Signature __________________</p>
+    `);
+
+    w.document.close();
+    w.print();
+}
+
+window.onload = loadFees;
