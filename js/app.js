@@ -54,11 +54,10 @@ function updateDashboard() {
         count.innerHTML = students.length;
     }
 }
-
 window.onload = function () {
-    updateFeeTotal();
     updateClock();
     updateDashboard();
+    updateFeeTotal();
 };
 // =========================
 // Save Student
