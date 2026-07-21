@@ -56,10 +56,10 @@ function deleteStudent(index) {
 
 }
 
-function editStudent(index) {
+function editStudent(index){
 
-    alert("Edit Module v2.0 আসছে...");
+    localStorage.setItem("editIndex", index);
+
+    window.location.href = "admissions.html";
 
 }
-
-window.onload = loadStudents;
