@@ -63,3 +63,4 @@ function editStudent(index){
     window.location.href = "admissions.html";
 
 }
+window.addEventListener("load", loadStudents);
