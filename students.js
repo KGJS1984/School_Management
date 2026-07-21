@@ -52,4 +52,12 @@ function deleteStudent(index){
     }
 
 }
+function editStudent(index){
 
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    localStorage.setItem("editStudent", JSON.stringify(students[index]));
+
+    window.location.href = "admissions.html";
+
+}
