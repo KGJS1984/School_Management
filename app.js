@@ -1,27 +1,13 @@
 function login() {
+    alert("Login button works!");
 
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
 
     if (email === "admin@gmail.com" && password === "123456") {
+        alert("Success");
         window.location.href = "dashboard.html";
     } else {
         alert("Wrong Email or Password");
     }
-
 }
-function toggleMenu(){
-    document.getElementById("sidebar").classList.toggle("show");
-}
-function updateClock() {
-    const clock = document.getElementById("clock");
-    if (clock) {
-        clock.innerHTML = new Date().toLocaleTimeString();
-    }
-}
-
-setInterval(updateClock, 1000);
-updateClock();
-
-setInterval(updateClock, 1000);
-updateClock();
