@@ -24,16 +24,21 @@ function loadStudents() {
                 <td>${student.mobile}</td>
 
                 <td>
-                    <button class="btn btn-warning btn-sm"
-                        onclick="editStudent(${index})">
-                        Edit
-                    </button>
+    <button class="btn btn-info btn-sm"
+        onclick="viewProfile(${index})">
+        Profile
+    </button>
 
-                    <button class="btn btn-danger btn-sm"
-                        onclick="deleteStudent(${index})">
-                        Delete
-                    </button>
-                </td>
+    <button class="btn btn-warning btn-sm"
+        onclick="editStudent(${index})">
+        Edit
+    </button>
+
+    <button class="btn btn-danger btn-sm"
+        onclick="deleteStudent(${index})">
+        Delete
+    </button>
+</td>
             </tr>
             `;
         }
