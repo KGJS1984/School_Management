@@ -111,3 +111,25 @@ function previewPhoto(event) {
     reader.readAsDataURL(event.target.files[0]);
 
 }
+window.addEventListener("load", function () {
+
+    let editIndex = localStorage.getItem("editIndex");
+
+    if (editIndex !== null && document.getElementById("name")) {
+
+        let students = JSON.parse(localStorage.getItem("students")) || [];
+
+        let s = students[editIndex];
+
+        document.getElementById("name").value = s.name;
+        document.getElementById("father").value = s.father;
+        document.getElementById("mother").value = s.mother;
+        document.getElementById("dob").value = s.dob;
+        document.getElementById("gender").value = s.gender;
+        document.getElementById("class").value = s.class;
+        document.getElementById("roll").value = s.roll;
+        document.getElementById("mobile").value = s.mobile;
+        document.getElementById("address").value = s.address;
+    }
+
+});
