@@ -18,11 +18,16 @@ function loadStudents() {
                 <td>${student.roll}</td>
                 <td>${student.mobile}</td>
                 <td>
-                    <button class="btn btn-danger btn-sm"
-                    onclick="deleteStudent(${index})">
-                    Delete
-                    </button>
-                </td>
+    <button class="btn btn-primary btn-sm"
+        onclick="editStudent(${index})">
+        Edit
+    </button>
+
+    <button class="btn btn-danger btn-sm"
+        onclick="deleteStudent(${index})">
+        Delete
+    </button>
+</td>
             </tr>
             `;
         }
@@ -33,14 +38,18 @@ function loadStudents() {
 
 function deleteStudent(index){
 
-    let students = JSON.parse(localStorage.getItem("students")) || [];
+    if(confirm("Are you sure you want to delete this student?")){
 
-    students.splice(index,1);
+        let students = JSON.parse(localStorage.getItem("students")) || [];
 
-    localStorage.setItem("students", JSON.stringify(students));
+        students.splice(index,1);
 
-    loadStudents();
+        localStorage.setItem("students", JSON.stringify(students));
+
+        loadStudents();
+
+        alert("Student Deleted Successfully");
+    }
 
 }
 
-window.onload = loadStudents;
