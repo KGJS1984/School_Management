@@ -1,45 +1,25 @@
-// Student ID Card Generator
+function loadIDCard() {
 
-function generateIDCard(student) {
+    let index = localStorage.getItem("profileIndex");
 
-    let card = `
-    <div class="id-card">
-        <div class="school-name">
-            Gobindaganj KG & Junior School
-        </div>
+    if (index === null) {
+        alert("No student selected");
+        window.location.href = "students.html";
+        return;
+    }
 
-        <img src="${student.photo}" 
-        class="student-photo">
+    let students = JSON.parse(localStorage.getItem("students")) || [];
 
-        <h3>${student.name}</h3>
+    let s = students[index];
 
-        <p><b>Class:</b> ${student.class}</p>
-        <p><b>Roll:</b> ${student.roll}</p>
-        <p><b>ID:</b> ${student.id}</p>
-        <p><b>Mobile:</b> ${student.mobile}</p>
+    document.getElementById("idName").innerHTML = s.name;
+    document.getElementById("idClass").innerHTML = s.class;
+    document.getElementById("idRoll").innerHTML = s.roll;
+    document.getElementById("studentId").innerHTML = s.id;
 
-        <div class="signature">
-            Principal Signature
-        </div>
-    </div>
-    `;
-
-    document.getElementById("cardBox").innerHTML = card;
+    if (s.photo) {
+        document.getElementById("idPhoto").src = s.photo;
+    }
 }
 
-
-// Example Student Data
-
-let student = {
-
-    name:"Rahim Ahmed",
-    class:"Five",
-    roll:"12",
-    id:"2026001",
-    mobile:"017XXXXXXXX",
-    photo:"student.jpg"
-
-};
-
-
-generateIDCard(student);
+window.onload = loadIDCard;
