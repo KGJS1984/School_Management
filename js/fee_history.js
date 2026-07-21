@@ -1,3 +1,4 @@
+console.log(JSON.parse(localStorage.getItem("fees")));
 function loadFees() {
 
     let fees = JSON.parse(localStorage.getItem("fees")) || [];
