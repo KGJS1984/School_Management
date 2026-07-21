@@ -65,3 +65,10 @@ function editStudent(index){
 
 }
 window.addEventListener("load", loadStudents);
+function viewProfile(index){
+
+    localStorage.setItem("profileIndex", index);
+
+    window.location.href = "profile.html";
+
+}
