@@ -69,3 +69,14 @@ function saveStudent() {
     document.getElementById("photoPreview").src =
         "https://via.placeholder.com/150";
 }
+function updateDashboard() {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    let count = document.getElementById("studentCount");
+
+    if (count) {
+        count.innerHTML = students.length;
+    }
+}
+
+updateDashboard();
