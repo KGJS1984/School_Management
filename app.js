@@ -14,10 +14,14 @@ function toggleMenu(){
     document.getElementById("sidebar").classList.toggle("show");
 }
 function updateClock() {
-    const now = new Date();
-    document.getElementById("clock").innerHTML =
-        now.toLocaleTimeString();
+    const clock = document.getElementById("clock");
+    if (clock) {
+        clock.innerHTML = new Date().toLocaleTimeString();
+    }
 }
+
+setInterval(updateClock, 1000);
+updateClock();
 
 setInterval(updateClock, 1000);
 updateClock();
