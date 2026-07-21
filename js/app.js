@@ -150,3 +150,10 @@ function updateFeeTotal() {
     }
 
 }
+window.addEventListener("load", function () {
+
+    updateClock();
+    updateDashboard();
+    updateFeeTotal();
+
+});
