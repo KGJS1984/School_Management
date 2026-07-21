@@ -56,6 +56,7 @@ function updateDashboard() {
 }
 
 window.onload = function () {
+    updateFeeTotal();
     updateClock();
     updateDashboard();
 };
@@ -133,3 +134,20 @@ window.addEventListener("load", function () {
     }
 
 });
+function updateFeeTotal() {
+
+    let fees = JSON.parse(localStorage.getItem("fees")) || [];
+
+    let total = 0;
+
+    fees.forEach(fee => {
+        total += Number(fee.amount);
+    });
+
+    let feeTotal = document.getElementById("feeTotal");
+
+    if (feeTotal) {
+        feeTotal.innerHTML = "৳" + total;
+    }
+
+}
