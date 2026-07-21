@@ -8,3 +8,22 @@ function login() {
         alert("Wrong Email or Password");
     }
 }
+function saveStudent() {
+
+    let student = {
+        name: document.getElementById("name").value,
+        father: document.getElementById("father").value,
+        mother: document.getElementById("mother").value,
+        class: document.getElementById("class").value,
+        roll: document.getElementById("roll").value
+    };
+
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    students.push(student);
+
+    localStorage.setItem("students", JSON.stringify(students));
+
+    alert("Student Saved Successfully");
+
+}
