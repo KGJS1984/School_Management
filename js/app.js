@@ -59,3 +59,48 @@ window.onload = function () {
     updateClock();
     updateDashboard();
 };
+// =========================
+// Save Student
+// =========================
+function saveStudent() {
+
+    let student = {
+        id: Date.now(),
+        name: document.getElementById("name").value,
+        father: document.getElementById("father").value,
+        mother: document.getElementById("mother").value,
+        dob: document.getElementById("dob").value,
+        gender: document.getElementById("gender").value,
+        class: document.getElementById("class").value,
+        roll: document.getElementById("roll").value,
+        mobile: document.getElementById("mobile").value,
+        address: document.getElementById("address").value
+    };
+
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    students.push(student);
+
+    localStorage.setItem("students", JSON.stringify(students));
+
+    alert("✅ Student Saved Successfully");
+
+    document.getElementById("studentForm").reset();
+
+    updateDashboard();
+}
+
+// =========================
+// Photo Preview
+// =========================
+function previewPhoto(event) {
+
+    let reader = new FileReader();
+
+    reader.onload = function () {
+        document.getElementById("photoPreview").src = reader.result;
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+
+}
