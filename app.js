@@ -80,3 +80,25 @@ function updateDashboard() {
 }
 
 updateDashboard();
+// Dashboard Student Count
+function updateDashboard() {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    let count = document.getElementById("studentCount");
+
+    if (count) {
+        count.innerHTML = students.length;
+    }
+}
+
+// Live Clock
+function updateClock() {
+    let clock = document.getElementById("clock");
+    if (clock) {
+        clock.innerHTML = new Date().toLocaleTimeString();
+    }
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+updateDashboard();
