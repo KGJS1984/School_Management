@@ -1,104 +1,61 @@
+// =========================
+// Login
+// =========================
 function login() {
-    let email = document.getElementById("email").value.trim();
-    let password = document.getElementById("password").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
     if (email === "admin@gmail.com" && password === "123456") {
-        window.location.assign("dashboard.html");
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "dashboard.html";
     } else {
-        alert("Wrong Email or Password");
-    }
-}
-function saveStudent() {
-
-    let student = {
-        name: document.getElementById("name").value,
-        father: document.getElementById("father").value,
-        mother: document.getElementById("mother").value,
-        class: document.getElementById("class").value,
-        roll: document.getElementById("roll").value
-    };
-
-    let students = JSON.parse(localStorage.getItem("students")) || [];
-
-    students.push(student);
-
-    localStorage.setItem("students", JSON.stringify(students));
-
-    alert("Student Saved Successfully");
-
-}
-// Photo Preview
-function previewPhoto(event) {
-    const reader = new FileReader();
-
-    reader.onload = function () {
-        document.getElementById("photoPreview").src = reader.result;
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
-}
-
-// Save Student
-function saveStudent() {
-
-    let student = {
-        id: "STD" + Date.now(),
-
-        name: document.getElementById("name").value,
-        father: document.getElementById("father").value,
-        mother: document.getElementById("mother").value,
-        dob: document.getElementById("dob").value,
-        gender: document.getElementById("gender").value,
-        class: document.getElementById("class").value,
-        roll: document.getElementById("roll").value,
-        mobile: document.getElementById("mobile").value,
-        address: document.getElementById("address").value,
-        photo: document.getElementById("photoPreview").src
-    };
-
-    let students = JSON.parse(localStorage.getItem("students")) || [];
-
-    students.push(student);
-
-    localStorage.setItem("students", JSON.stringify(students));
-
-    alert("✅ Student Saved Successfully");
-
-    document.getElementById("studentForm").reset();
-
-    document.getElementById("photoPreview").src =
-        "https://via.placeholder.com/150";
-}
-function updateDashboard() {
-    let students = JSON.parse(localStorage.getItem("students")) || [];
-
-    let count = document.getElementById("studentCount");
-
-    if (count) {
-        count.innerHTML = students.length;
+        alert("❌ Invalid Email or Password");
     }
 }
 
-updateDashboard();
-// Dashboard Student Count
-function updateDashboard() {
-    let students = JSON.parse(localStorage.getItem("students")) || [];
+// =========================
+// Logout
+// =========================
+function logout() {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+}
 
-    let count = document.getElementById("studentCount");
-
-    if (count) {
-        count.innerHTML = students.length;
+// =========================
+// Sidebar Toggle
+// =========================
+function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar) {
+        sidebar.classList.toggle("show");
     }
 }
 
+// =========================
 // Live Clock
+// =========================
 function updateClock() {
-    let clock = document.getElementById("clock");
+    const clock = document.getElementById("clock");
     if (clock) {
         clock.innerHTML = new Date().toLocaleTimeString();
     }
 }
 
 setInterval(updateClock, 1000);
-updateClock();
-updateDashboard();
+
+// =========================
+// Dashboard Student Count
+// =========================
+function updateDashboard() {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    const count = document.getElementById("studentCount");
+    if (count) {
+        count.innerHTML = students.length;
+    }
+}
+
+window.onload = function () {
+    updateClock();
+    updateDashboard();
+};
