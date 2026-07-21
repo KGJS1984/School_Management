@@ -7,9 +7,9 @@
 <title>Student Admission</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container mt-4">
@@ -20,104 +20,92 @@
 <h3>🎓 Student Admission Form</h3>
 </div>
 
-<div class="card-body"
-<form id="studentForm" onsubmit="saveStudent(event)">
+<div class="card-body">
+
+<form id="studentForm" onsubmit="saveStudent(); return false;">
 
 <div class="row">
 
 <div class="col-md-6 mb-3">
-<label>Student ID</label>
-<input type="text" id="studentName" class="form-control" value="Auto Generate" readonly>
-</div>
-
-<div class="col-md-6 mb-3">
-<label>Admission Date</label>
-<input type="date" id="fatherName" class="form-control">
-</div>
-
-<div class="col-md-6 mb-3">
 <label>Student Name</label>
-<input type="text" id="motherName" class="form-control">
+<input type="text" id="name" class="form-control" required>
 </div>
 
 <div class="col-md-6 mb-3">
 <label>Father's Name</label>
-<input type="text" id=class="form-control">
+<input type="text" id="father" class="form-control" required>
 </div>
 
 <div class="col-md-6 mb-3">
 <label>Mother's Name</label>
-<input type="text" id="mobile" class="form-control">
+<input type="text" id="mother" class="form-control" required>
 </div>
 
 <div class="col-md-6 mb-3">
 <label>Date of Birth</label>
-<input type="date" id="address" class="form-control">
+<input type="date" id="dob" class="form-control">
 </div>
 
 <div class="col-md-6 mb-3">
 <label>Gender</label>
-<select class="form-select">
+
+<select id="gender" class="form-select">
 <option>Male</option>
 <option>Female</option>
 </select>
+
 </div>
 
 <div class="col-md-6 mb-3">
+
 <label>Class</label>
-<select class="form-select">
+
+<select id="class" class="form-select">
+
 <option>Play</option>
 <option>Nursery</option>
-
 <option>Class One</option>
 <option>Class Two</option>
-<option>Class Three</option>
-<option>Class Four</option>
-<option>Class Five</option>
-</select>
-</div>
-
+<option>Class Three</option
 <div class="col-md-6 mb-3">
 <label>Roll</label>
-<input type="number" class="form-control">
+<input type="number" id="roll" class="form-control" required>
 </div>
 
 <div class="col-md-6 mb-3">
 <label>Mobile</label>
-<input type="text" class="form-control">
+<input type="text" id="mobile" class="form-control">
 </div>
 
 <div class="col-12 mb-3">
 <label>Address</label>
-<textarea class="form-control" rows="3"></textarea>
+<textarea id="address" class="form-control" rows="3"></textarea>
 </div>
 
-<div class="col-12 mb-3">
-<label>Student Photo</label>
 <div class="col-md-6 mb-3">
-    <label>Student Photo</label>
-    <input type="file" id="photo" class="form-control" accept="image/*" onchange="previewPhoto(event)">
+<label>Student Photo</label>
+<input type="file"
+       id="photo"
+       class="form-control"
+       accept="image/*"
+       onchange="previewPhoto(event)">
 </div>
 
 <div class="col-md-6 mb-3 text-center">
-    <img id="photoPreview"
-         src="https://via.placeholder.com/150"
-         width="150"
-         height="150"
-         style="border:2px solid #ccc;border-radius:10px;">
-</div>
-<input type="file" class="form-control">
+<img id="photoPreview"
+     src="https://via.placeholder.com/150"
+     width="150"
+     height="150"
+     style="border:2px solid #ccc;border-radius:10px;">
 </div>
 
-<div class="col-12">
+<div class="col-12 mt-3">
 
 <button type="submit" class="btn btn-success">
 💾 Save Student
-<button type="reset" class="btn btn-warning">
-    ✨ New Entry
 </button>
 
-<button type="reset" class="btn btn-danger">
+<button type="reset" class="btn btn-warning">
 🔄 Reset
 </button>
 
@@ -137,24 +125,32 @@
 
 </div>
 
-<script src="js/students.js"></script>
+<script src="app.js"></script>
+
 </body>
 </html>
-<div class="container mt-4">
-<h2>Student Admission</h2>
+// Photo Preview
+function previewPhoto(event) {
+    const reader = new FileReader();
 
-<input type="text" id="name" class="form-control mb-2" placeholder="Student Name">
+    reader.onload = function () {
+        document.getElementById("photoPreview").src = reader.result;
+    };
 
-<input type="text" id="father" class="form-control mb-2" placeholder="Father's Name">
+    reader.readAsDataURL(event.target.files[0]);
+}
 
-<input type="text" id="mother" class="form-control mb-2" placeholder="Mother's Name">
+// Save Student
+function saveStudent() {
 
-<input type="text" id="class" class="form-control mb-2" placeholder="Class">
+    let student = {
+        id: "STD" + Date.now(),
 
-<input type="text" id="roll" class="form-control mb-2" placeholder="Roll">
-
-<button class="btn btn-success" onclick="saveStudent()">
-Save Student
-</button>
-
-</div>
+        name: document.getElementById("name").value,
+        father: document.getElementById("father").value,
+        mother: document.getElementById("mother").value,
+        dob: document.getElementById("dob").value,
+        gender: document.getElementById("gender").value,
+        class: document.getElementById("class").value,
+        roll: document.getElementById("roll").value,
+        mobile: document.getElementById("mobile").value
