@@ -1,3 +1,4 @@
+console.log(JSON.parse(localStorage.getItem("students")));
 function loadStudents() {
 
     let students = JSON.parse(localStorage.getItem("students")) || [];
