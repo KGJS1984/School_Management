@@ -14,79 +14,48 @@
 
 <div class="container mt-4">
 
-<div class="card shadow">
+<div class="d-flex justify-content-between align-items-center mb-3">
 
-<div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+<h2>📋 Student List</h2>
 
-<h3>👨‍🎓 Student List</h3>
-
-<a href="admission.html" class="btn btn-light">
-➕ New Admission
+<div>
+<a href="admissions.html" class="btn btn-success">
+➕ Add Student
 </a>
 
-</div>
-
-<div class="card-body">
-
-<div class="row mb-3">
-    <div class="col-md-6">
-        <input
-            type="text"
-            class="form-control"
-            placeholder="🔍 Search Student"
-            onkeyup="searchStudent(this.value)">
-    </div>
-</div>
-
-<div class="col-md-6 mb-3">
-    <label>Student ID</label>
-    <input type="text" id="studentId" class="form-control" readonly>
+<a href="dashboard.html" class="btn btn-secondary">
+🏠 Dashboard
+</a>
 </div>
 
 </div>
+
+<input
+type="text"
+id="search"
+class="form-control mb-3"
+placeholder="🔍 Search by Name..."
+onkeyup="loadStudents()">
 
 <div class="table-responsive">
 
 <table class="table table-bordered table-striped">
 
-<thead class="table-dark">
+<thead class="table-primary">
 
 <tr>
-
-<th>ID</th>
+<th>#</th>
 <th>Name</th>
+<th>Father</th>
 <th>Class</th>
 <th>Roll</th>
 <th>Mobile</th>
-<th>Action</th>
-
+<th width="180">Action</th>
 </tr>
 
 </thead>
 
 <tbody id="studentTable">
-
-<tr>
-
-<td>1001</td>
-<td>Demo Student</td>
-<td>Class Five</td>
-<td>1</td>
-<td>01700000000</td>
-
-<td>
-
-<button class="btn btn-warning btn-sm">
-✏ Edit
-</button>
-
-<button class="btn btn-danger btn-sm">
-🗑 Delete
-</button>
-
-</td>
-
-</tr>
 
 </tbody>
 
@@ -96,63 +65,7 @@
 
 </div>
 
-</div>
-
-</div>
-
 <script src="js/students.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Student List</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<div class="container mt-4">
-
-<h2>📋 Student List</h2>
-
-<input type="text"
-       id="search"
-       class="form-control mb-3"
-       placeholder="🔍 Search Student..."
-       onkeyup="loadStudents()">
-
-<table class="table table-bordered table-striped">
-
-<thead class="table-primary">
-
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Class</th>
-<th>Roll</th>
-<th>Mobile</th>
-<th>Action</th>
-</tr>
-
-</thead>
-
-<tbody id="studentTable"></tbody>
-
-</table>
-
-<a href="dashboard.html" class="btn btn-secondary">
-⬅ Dashboard
-</a>
-
-</div>
-
-<script src="students.js"></script>
 
 </body>
 </html>
