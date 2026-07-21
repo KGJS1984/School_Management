@@ -79,15 +79,22 @@ function saveStudent() {
 
     let students = JSON.parse(localStorage.getItem("students")) || [];
 
-    students.push(student);
+    let editIndex = localStorage.getItem("editIndex");
+
+    if (editIndex !== null) {
+        students[editIndex] = student;
+        localStorage.removeItem("editIndex");
+        alert("✅ Student Updated Successfully");
+    } else {
+        students.push(student);
+        alert("✅ Student Saved Successfully");
+    }
 
     localStorage.setItem("students", JSON.stringify(students));
 
-    alert("✅ Student Saved Successfully");
-
     document.getElementById("studentForm").reset();
 
-    updateDashboard();
+    window.location.href = "students.html";
 }
 
 // =========================
