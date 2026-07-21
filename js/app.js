@@ -98,18 +98,18 @@ function saveStudent() {
 }
 
 // =========================
-// Photo Preview
-// =========================
+let photoData = "";
+
 function previewPhoto(event) {
 
     let reader = new FileReader();
 
     reader.onload = function () {
-        document.getElementById("photoPreview").src = reader.result;
+        photoData = reader.result;
+        document.getElementById("photoPreview").src = photoData;
     };
 
     reader.readAsDataURL(event.target.files[0]);
-
 }
 window.addEventListener("load", function () {
 
