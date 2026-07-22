@@ -83,23 +83,27 @@
 <div class="col-12 mb-3">
 <label>Address</label>
 <textarea id="address" class="form-control" rows="3"></textarea>
-</div>
-
 <div class="col-md-6 mb-3">
-<label>Student Photo</label>
-<input type="file"
-       id="photo"
-       class="form-control"
-       accept="image/*"
-       onchange="previewPhoto(event)">
+
+<label>Photo</label>
+
+<input
+type="file"
+class="form-control"
+accept="image/*"
+onchange="previewPhoto(event)">
+
 </div>
 
-<div class="col-md-6 mb-3 text-center">
-<img id="photoPreview"
-     src="https://via.placeholder.com/150"
-     width="150"
-     height="150"
-     style="border:2px solid #ccc;border-radius:10px;">
+<div class="col-md-6 text-center">
+
+<img
+id="photoPreview"
+src="https://via.placeholder.com/120"
+width="120"
+height="120"
+class="rounded-circle border">
+
 </div>
 
 <div class="col-12 mt-3">
