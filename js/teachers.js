@@ -79,21 +79,27 @@ function loadTeachers() {
 
             <td>
 
-            <button class="btn btn-warning btn-sm"
-            onclick="editTeacher(${index})">
-           <button class="btn btn-info btn-sm"
+<button class="btn btn-primary btn-sm"
+onclick="teacherID(${index})">
+🪪 ID Card
+</button>
+
+<button class="btn btn-info btn-sm"
 onclick="viewTeacherProfile(${index})">
 Profile
 </button>
-            Edit
-            </button>
 
-            <button class="btn btn-danger btn-sm"
-            onclick="deleteTeacher(${index})">
-            Delete
-            </button>
+<button class="btn btn-warning btn-sm"
+onclick="editTeacher(${index})">
+Edit
+</button>
 
-            </td>
+<button class="btn btn-danger btn-sm"
+onclick="deleteTeacher(${index})">
+Delete
+</button>
+
+</td>
 
             </tr>
             `;
