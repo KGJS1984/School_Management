@@ -29,6 +29,12 @@ function loadStudents() {
         Profile
     </button>
 
+<button class="btn btn-success btn-sm"
+onclick="viewID(${index})">
+
+ID Card
+
+</button>
     <button class="btn btn-warning btn-sm"
         onclick="editStudent(${index})">
         Edit
@@ -77,3 +83,10 @@ function viewProfile(index){
     window.location.href = "profile.html";
 
 }
+function viewID(index){
+
+localStorage.setItem("profileIndex",index);
+
+window.location.href="incard.html";
+
+    }
