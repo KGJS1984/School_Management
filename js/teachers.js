@@ -14,10 +14,23 @@ function saveTeacher(){
 
     };
 
-    let teachers =
-    JSON.parse(localStorage.getItem("teachers")) || [];
+    let editIndex = localStorage.getItem("teacherEditIndex");
+
+if(editIndex !== null){
+
+    teachers[editIndex] = teacher;
+
+    localStorage.removeItem("teacherEditIndex");
+
+    alert("✅ Teacher Updated Successfully");
+
+}else{
 
     teachers.push(teacher);
+
+    alert("✅ Teacher Saved Successfully");
+
+}
 
     localStorage.setItem("teachers",
     JSON.stringify(teachers));
