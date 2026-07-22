@@ -33,6 +33,9 @@ function saveTeacher(){
     localStorage.setItem("teachers", JSON.stringify(teachers));
 
     document.querySelector("form").reset();
+    teacherPhotoData = "";
+document.getElementById("teacherPhotoPreview").src =
+"https://via.placeholder.com/120";
 
     window.location.href = "teachers_list.html";
 
