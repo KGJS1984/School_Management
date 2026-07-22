@@ -154,7 +154,7 @@ function teacherID(index){
 
     localStorage.setItem("teacherProfileIndex", index);
 
-    window.location.href = "teachers_idcard.html";
+    window.location.href = "teachers_incard.html";
 
 }
 window.addEventListener("load", function () {
