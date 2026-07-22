@@ -81,6 +81,10 @@ function loadTeachers() {
 
             <button class="btn btn-warning btn-sm"
             onclick="editTeacher(${index})">
+           <button class="btn btn-info btn-sm"
+onclick="viewTeacherProfile(${index})">
+Profile
+</button>
             Edit
             </button>
 
@@ -122,3 +126,10 @@ function editTeacher(index){
     window.location.href="teachers.html";
 
 }
+function viewTeacherProfile(index){
+
+    localStorage.setItem("teacherProfileIndex", index);
+
+    window.location.href = "teacher_profile.html";
+
+        }
