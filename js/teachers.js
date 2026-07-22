@@ -14,30 +14,31 @@ function saveTeacher(){
 
     };
 
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
     let editIndex = localStorage.getItem("teacherEditIndex");
 
-if(editIndex !== null){
+    if(editIndex !== null){
 
-    teachers[editIndex] = teacher;
+        teachers[editIndex] = teacher;
 
-    localStorage.removeItem("teacherEditIndex");
+        localStorage.removeItem("teacherEditIndex");
 
-    alert("✅ Teacher Updated Successfully");
+        alert("✅ Teacher Updated Successfully");
 
-}else{
+    }else{
 
-    teachers.push(teacher);
+        teachers.push(teacher);
 
-    alert("✅ Teacher Saved Successfully");
+        alert("✅ Teacher Saved Successfully");
 
-}
+    }
 
-    localStorage.setItem("teachers",
-    JSON.stringify(teachers));
-
-    alert("✅ Teacher Saved Successfully");
+    localStorage.setItem("teachers", JSON.stringify(teachers));
 
     document.querySelector("form").reset();
+
+    window.location.href = "teacher_list.html";
 
 }
 // =========================
