@@ -86,4 +86,11 @@ function saveAttendance() {
 
 }
 
-window.onload = loadAttendance;
+window.onload = function () {
+
+    document.getElementById("attendanceDate").value =
+        new Date().toISOString().split("T")[0];
+
+    loadAttendance();
+
+};
