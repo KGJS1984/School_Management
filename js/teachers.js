@@ -157,3 +157,25 @@ function teacherID(index){
     window.location.href = "teacher_idcard.html";
 
 }
+window.addEventListener("load", function () {
+
+    let editIndex = localStorage.getItem("teacherEditIndex");
+
+    if (editIndex !== null) {
+
+        let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+        let t = teachers[editIndex];
+
+        document.getElementById("teacherName").value = t.name;
+        document.getElementById("designation").value = t.designation;
+        document.getElementById("teacherMobile").value = t.mobile;
+        document.getElementById("teacherEmail").value = t.email;
+
+        if (t.photo) {
+            teacherPhotoData = t.photo;
+            document.getElementById("teacherPhotoPreview").src = t.photo;
+        }
+    }
+
+});
