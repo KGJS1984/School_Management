@@ -139,3 +139,18 @@ function viewTeacherProfile(index){
     window.location.href = "teacher_profile.html";
 
         }
+function previewTeacherPhoto(event){
+
+    let reader = new FileReader();
+
+    reader.onload = function(){
+
+        teacherPhotoData = reader.result;
+
+        document.getElementById("teacherPhotoPreview").src = teacherPhotoData;
+
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+
+}
