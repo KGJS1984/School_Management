@@ -132,7 +132,7 @@ function viewTeacherProfile(index){
 
     localStorage.setItem("teacherProfileIndex", index);
 
-    window.location.href = "teacher_profile.html";
+    window.location.href = "teachers_profile.html";
 
         }
 function previewTeacherPhoto(event){
@@ -154,7 +154,7 @@ function teacherID(index){
 
     localStorage.setItem("teacherProfileIndex", index);
 
-    window.location.href = "teacher_idcard.html";
+    window.location.href = "teachers_idcard.html";
 
 }
 window.addEventListener("load", function () {
