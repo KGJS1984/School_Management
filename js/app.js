@@ -273,3 +273,11 @@ function updateStatistics() {
     }
 
 }
+// Total Teachers
+let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+let teacherCount = document.getElementById("teacherTotal");
+
+if (teacherCount) {
+    teacherCount.innerHTML = teachers.length;
+}
