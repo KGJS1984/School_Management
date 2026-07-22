@@ -65,17 +65,18 @@ window.onload = function () {
 function saveStudent() {
 
     let student = {
-        id: Date.now(),
-        name: document.getElementById("name").value,
-        father: document.getElementById("father").value,
-        mother: document.getElementById("mother").value,
-        dob: document.getElementById("dob").value,
-        gender: document.getElementById("gender").value,
-        class: document.getElementById("class").value,
-        roll: document.getElementById("roll").value,
-        mobile: document.getElementById("mobile").value,
-        address: document.getElementById("address").value
-    };
+    id: Date.now(),
+    name: document.getElementById("name").value,
+    father: document.getElementById("father").value,
+    mother: document.getElementById("mother").value,
+    dob: document.getElementById("dob").value,
+    gender: document.getElementById("gender").value,
+    class: document.getElementById("class").value,
+    roll: document.getElementById("roll").value,
+    mobile: document.getElementById("mobile").value,
+    address: document.getElementById("address").value,
+    photo: photoData
+};
 
     let students = JSON.parse(localStorage.getItem("students")) || [];
 
