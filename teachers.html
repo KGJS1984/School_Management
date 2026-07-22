@@ -43,7 +43,24 @@
 <label>Email</label>
 <input type="email" id="teacherEmail" class="form-control">
 </div>
+<div class="col-md-6 mb-3">
+<label>Photo</label>
+<input type="file"
+id="teacherPhoto"
+class="form-control"
+accept="image/*"
+onchange="previewTeacherPhoto(event)">
+</div>
 
+<div class="col-md-6 mb-3 text-center">
+
+<img id="teacherPhotoPreview"
+src="https://via.placeholder.com/120"
+width="120"
+height="120"
+style="border-radius:50%;border:3px solid #198754;">
+
+</div>
 <div class="col-12">
 <button class="btn btn-success" type="submit">
 💾 Save Teacher
