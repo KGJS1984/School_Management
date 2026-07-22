@@ -156,7 +156,7 @@ window.addEventListener("load", function () {
     updateClock();
     updateDashboard();
     updateFeeTotal();
-
+    updateStatistics();
 });
 // =========================
 // Student List
