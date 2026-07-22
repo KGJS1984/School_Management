@@ -244,3 +244,32 @@ function viewProfile(index) {
     window.location.href = "profile.html";
 
                     }
+// =========================
+// Dashboard Statistics
+// =========================
+
+function updateStatistics() {
+
+    // Teacher Count
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let teacherCount = document.getElementById("teacherCount");
+
+    if (teacherCount) {
+        teacherCount.innerHTML = teachers.length;
+    }
+
+    // Today's Attendance
+    let today = new Date().toISOString().split("T")[0];
+
+    let attendance =
+        JSON.parse(localStorage.getItem("attendance_" + today)) || [];
+
+    let attendanceCount =
+        document.getElementById("attendanceCount");
+
+    if (attendanceCount) {
+        attendanceCount.innerHTML = attendance.length;
+    }
+
+}
