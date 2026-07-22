@@ -12,13 +12,13 @@ function loadProfile() {
 
     let s = students[index];
 
-    document.getElementById("pName").innerHTML = s.name;
-    document.getElementById("pFather").innerHTML = s.father;
-    document.getElementById("pMother").innerHTML = s.mother;
-    document.getElementById("pClass").innerHTML = s.class;
-    document.getElementById("pRoll").innerHTML = s.roll;
-    document.getElementById("pMobile").innerHTML = s.mobile;
-    document.getElementById("pAddress").innerHTML = s.address;
+    document.getElementById("pname").innerHTML = s.name;
+document.getElementById("pfather").innerHTML = s.father;
+document.getElementById("pmother").innerHTML = s.mother;
+document.getElementById("pclass").innerHTML = s.class;
+document.getElementById("proll").innerHTML = s.roll;
+document.getElementById("pmobile").innerHTML = s.mobile;
+document.getElementById("paddress").innerHTML = s.address;
 
     if (s.photo) {
         document.getElementById("profilePhoto").src = s.photo;
