@@ -38,7 +38,7 @@ function saveTeacher(){
 
     document.querySelector("form").reset();
 
-    window.location.href = "teacher_list.html";
+    window.location.href = "teachers_list.html";
 
 }
 // =========================
