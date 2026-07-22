@@ -120,6 +120,9 @@ window.addEventListener("load", function(){
     document.getElementById("paddress").innerHTML =
     s.address;
 
+    if (s.photo) {
+    document.getElementById("profilePhoto").src = s.photo;
+    }
 });
 
 </script>
