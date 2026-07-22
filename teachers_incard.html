@@ -11,71 +11,73 @@
 <style>
 
 body{
-background:#f2f2f2;
+    background:#f2f2f2;
 }
 
 .id-card{
-
-width:350px;
-margin:30px auto;
-border:3px solid #198754;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 0 15px gray;
-background:white;
-
+    width:350px;
+    margin:30px auto;
+    background:#fff;
+    border:3px solid #198754;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 0 15px rgba(0,0,0,.3);
 }
 
 .header{
+    background:#198754;
+    color:#fff;
+    text-align:center;
+    padding:15px;
+}
 
-background:#198754;
-color:white;
-text-align:center;
-padding:10px;
-
+.header img{
+    width:60px;
+    height:60px;
 }
 
 .photo{
-
-text-align:center;
-margin:15px;
-
+    text-align:center;
+    margin-top:15px;
 }
 
 .photo img{
-
-width:110px;
-height:110px;
-border-radius:50%;
-border:4px solid #198754;
-object-fit:cover;
-
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    border:4px solid #198754;
+    object-fit:cover;
 }
 
 .body{
+    padding:15px;
+    font-size:16px;
+}
 
-padding:15px;
-font-size:16px;
-
+.body p{
+    margin:8px 0;
 }
 
 .footer{
+    background:#f5f5f5;
+    text-align:center;
+    padding:10px;
+    font-weight:bold;
+}
 
-background:#f5f5f5;
-text-align:center;
-padding:10px;
-font-weight:bold;
-
+.buttons{
+    text-align:center;
+    margin-top:20px;
 }
 
 @media print{
 
-button,a{
-display:none;
-}
-
 body{
 background:white;
+}
+
+.buttons{
+display:none;
 }
 
 .id-card{
@@ -94,6 +96,24 @@ margin:auto;
 <div class="id-card">
 
 <div class="header">
-if (t.photo) {
-    document.getElementById("teacherPhoto").src = t.photo;
-}
+
+<img src="images/logo.png" alt="Logo">
+
+<h4>Gobindaganj KG & Junior School</h4>
+
+<small>Teacher Identity Card</small>
+
+</div>
+
+<div class="photo">
+
+<img id="teacherPhoto"
+src="https://via.placeholder.com/110">
+
+</div>
+
+<div class="body">
+
+<p><b>Name :</b> <span id="teacherName"></span></p>
+
+<p><b>Designation :</b> <span id="teacherDesignation"></
