@@ -11,7 +11,7 @@ function saveTeacher(){
         mobile: document.getElementById("teacherMobile").value,
 
         email: document.getElementById("teacherEmail").value
-
+    
     };
 
     let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
