@@ -157,6 +157,7 @@ window.addEventListener("load", function () {
     updateDashboard();
     updateFeeTotal();
     updateStatistics();
+    updateTeacherCount();
 });
 // =========================
 // Student List
@@ -280,4 +281,18 @@ let teacherCount = document.getElementById("teacherTotal");
 
 if (teacherCount) {
     teacherCount.innerHTML = teachers.length;
+}
+// =========================
+// Teacher Count
+// =========================
+function updateTeacherCount() {
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let teacherCount = document.getElementById("teacherTotal");
+
+    if (teacherCount) {
+        teacherCount.innerHTML = teachers.length;
+    }
+
 }
