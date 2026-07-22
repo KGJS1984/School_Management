@@ -1,18 +1,14 @@
+let teacherPhotoData = "";
 function saveTeacher(){
 
     let teacher = {
-
-        id: Date.now(),
-
-        name: document.getElementById("teacherName").value,
-
-        designation: document.getElementById("designation").value,
-
-        mobile: document.getElementById("teacherMobile").value,
-
-        email: document.getElementById("teacherEmail").value
-    
-    };
+    id: Date.now(),
+    name: document.getElementById("teacherName").value,
+    designation: document.getElementById("designation").value,
+    mobile: document.getElementById("teacherMobile").value,
+    email: document.getElementById("teacherEmail").value,
+    photo: teacherPhotoData
+};
 
     let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
 
@@ -152,5 +148,12 @@ function previewTeacherPhoto(event){
     };
 
     reader.readAsDataURL(event.target.files[0]);
+
+}
+function teacherID(index){
+
+    localStorage.setItem("teacherProfileIndex", index);
+
+    window.location.href = "teacher_idcard.html";
 
 }
