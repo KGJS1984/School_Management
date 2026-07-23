@@ -52,11 +52,11 @@ function loadTeachers() {
 
     let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
 
-    let search = document.getElementById("searchTeacher").value.toLowerCase();
-
     let table = document.getElementById("teacherTable");
+if (!table) return;
 
-    if (!table) return;
+let searchBox = document.getElementById("searchTeacher");
+let search = searchBox ? searchBox.value.toLowerCase() : "";
 
     table.innerHTML = "";
 
