@@ -1,20 +1,276 @@
-let teacherPhotoData="";
+// =========================
+// Teacher Management
+// Part 1
+// =========================
+
+let teacherPhotoData = "";
+
+// =========================
+// Save Teacher
+// =========================
 function saveTeacher(){
- const teacher={id:Date.now(),name:teacherName.value,designation:designation.value,mobile:teacherMobile.value,email:teacherEmail.value,photo:teacherPhotoData};
- let teachers=JSON.parse(localStorage.getItem("teachers"))||[];
- let i=localStorage.getItem("teacherEditIndex");
- if(i!==null){teachers[i]=teacher;localStorage.removeItem("teacherEditIndex");} else teachers.push(teacher);
- localStorage.setItem("teachers",JSON.stringify(teachers));
- location.href="teachers_list.html";
+
+    let teacher = {
+
+        id: Date.now(),
+
+        name: document.getElementById("teacherName").value.trim(),
+
+        designation: document.getElementById("designation").value.trim(),
+
+        mobile: document.getElementById("teacherMobile").value.trim(),
+
+        email: document.getElementById("teacherEmail").value.trim(),
+
+        photo: teacherPhotoData
+
+    };
+
+    let teachers =
+    JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let editIndex =
+    localStorage.getItem("teacherEditIndex");
+
+    if(editIndex !== null){
+
+        teachers[editIndex] = teacher;
+
+        localStorage.removeItem("teacherEditIndex");
+
+        alert("✅ Teacher Updated Successfully");
+
+    }else{
+
+        teachers.push(teacher);
+
+        alert("✅ Teacher Saved Successfully");
+
+    }
+
+    localStorage.setItem(
+        "teachers",
+        JSON.stringify(teachers)
+    );
+
+    document.querySelector("form").reset();
+
+    teacherPhotoData = "";
+
+    let img =
+    document.getElementById("teacherPhotoPreview");
+
+    if(img){
+        img.src = "https://via.placeholder.com/120";
+    }
+
+    window.location.href="teachers_list.html";
+
 }
+
+// =========================
+// Teacher Photo Preview
+// =========================
+
+function previewTeacherPhoto(event){
+
+    let reader = new FileReader();
+
+    reader.onload = function(){
+
+        teacherPhotoData = reader.result;
+
+        document.getElementById(
+        "teacherPhotoPreview").src = teacherPhotoData;
+
+    };
+
+    if(event.target.files.length>0){
+
+        reader.readAsDataURL(
+        event.target.files[0]);
+
+    }
+
+}
+// =========================
+// Teacher List + Smart Search
+// =========================
+
 function loadTeachers(){
- const table=document.getElementById("teacherTable"); if(!table)return;
- const s=(document.getElementById("searchTeacher")?.value||"").toLowerCase();
- const teachers=JSON.parse(localStorage.getItem("teachers"))||[];
- table.innerHTML="";
- teachers.forEach((t,i)=>{if(t.name.toLowerCase().includes(s)||t.designation.toLowerCase().includes(s)){table.innerHTML+=`<tr><td>${i+1}</td><td>${t.name}</td><td>${t.designation}</td><td>${t.mobile}</td><td>${t.email}</td><td><button onclick="editTeacher(${i})">Edit</button> <button onclick="deleteTeacher(${i})">Delete</button></td></tr>`;}});
+
+    let teachers =
+    JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let table =
+    document.getElementById("teacherTable");
+
+    if(!table) return;
+
+    let searchBox =
+    document.getElementById("searchTeacher");
+
+    let search =
+    searchBox ? searchBox.value.toLowerCase() : "";
+
+    table.innerHTML="";
+
+    teachers.forEach((teacher,index)=>{
+
+        if(
+            teacher.name.toLowerCase().includes(search) ||
+            teacher.designation.toLowerCase().includes(search) ||
+            teacher.mobile.toLowerCase().includes(search) ||
+            teacher.email.toLowerCase().includes(search)
+        ){
+
+            table.innerHTML += `
+            <tr>
+
+            <td>${index+1}</td>
+
+            <td>
+            ${teacher.photo ?
+            `<img src="${teacher.photo}"
+            width="40"
+            height="40"
+            style="border-radius:50%;margin-right:8px;">`
+            :
+            ""}
+            ${teacher.name}
+            </td>
+
+            <td>${teacher.designation}</td>
+
+            <td>${teacher.mobile}</td>
+
+            <td>${teacher.email}</td>
+
+            <td>
+
+            <button class="btn btn-info btn-sm"
+            onclick="viewTeacherProfile(${index})">
+            👤
+            </button>
+
+            <button class="btn btn-warning btn-sm"
+            onclick="editTeacher(${index})">
+            ✏️
+            </button>
+
+            <button class="btn btn-danger btn-sm"
+            onclick="deleteTeacher(${index})">
+            🗑️
+            </button>
+
+            </td>
+
+            </tr>
+            `;
+
+        }
+
+    });
+
 }
-function deleteTeacher(i){let t=JSON.parse(localStorage.getItem("teachers"))||[];t.splice(i,1);localStorage.setItem("teachers",JSON.stringify(t));loadTeachers();}
-function editTeacher(i){localStorage.setItem("teacherEditIndex",i);location.href="teachers.html";}
-function previewTeacherPhoto(e){const r=new FileReader();r.onload=()=>{teacherPhotoData=r.result;let p=document.getElementById("teacherPhotoPreview");if(p)p.src=teacherPhotoData;}; if(e.target.files[0])r.readAsDataURL(e.target.files[0]);}
-window.onload=function(){loadTeachers(); let i=localStorage.getItem("teacherEditIndex"); if(i!==null&&document.getElementById("teacherName")){let t=(JSON.parse(localStorage.getItem("teachers"))||[])[i]; if(t){teacherName.value=t.name;designation.value=t.designation;teacherMobile.value=t.mobile;teacherEmail.value=t.email; if(t.photo){teacherPhotoData=t.photo;teacherPhotoPreview.src=t.photo;}}}}
+// =========================
+// Edit Teacher
+// =========================
+function editTeacher(index){
+
+    localStorage.setItem("teacherEditIndex", index);
+
+    window.location.href = "teachers.html";
+
+}
+
+// =========================
+// Delete Teacher
+// =========================
+function deleteTeacher(index){
+
+    if(confirm("Delete this teacher?")){
+
+        let teachers =
+        JSON.parse(localStorage.getItem("teachers")) || [];
+
+        teachers.splice(index,1);
+
+        localStorage.setItem(
+            "teachers",
+            JSON.stringify(teachers)
+        );
+
+        loadTeachers();
+
+    }
+
+}
+
+// =========================
+// Teacher Profile
+// =========================
+function viewTeacherProfile(index){
+
+    localStorage.setItem(
+        "teacherProfileIndex",
+        index
+    );
+
+    window.location.href =
+    "teachers_profile.html";
+
+}
+
+// =========================
+// Teacher ID Card
+// =========================
+function teacherID(index){
+
+    localStorage.setItem(
+        "teacherProfileIndex",
+        index
+    );
+
+    window.location.href =
+    "teachers_incard.html";
+
+}
+
+// =========================
+// Auto Load
+// =========================
+window.onload = function(){
+
+    // Teacher List Page
+    loadTeachers();
+
+    // Teacher Edit Page
+    let editIndex =
+    localStorage.getItem("teacherEditIndex");
+
+    if(
+        editIndex !== null &&
+        document.getElementById("teacherName")
+    ){
+
+        let teachers =
+        JSON.parse(localStorage.getItem("teachers")) || [];
+
+        let t = teachers[editIndex];
+
+        if(!t) return;
+
+        document.getElementById("teacherName").value = t.name;
+        document.getElementById("designation").value = t.designation;
+        document.getElementById("teacherMobile").value = t.mobile;
+        document.getElementById("teacherEmail").value = t.email;
+
+        if(t.photo){
+            teacherPhotoData = t.photo;
+            document.getElementById("teacherPhotoPreview").src = t.photo;
+        }
+
+    }
+
+};
