@@ -62,3 +62,22 @@ function fillStudentInfo(){
     }
 
 }
+function fillStudentInfo(){
+
+    let students =
+    JSON.parse(localStorage.getItem("students")) || [];
+
+    let name =
+    document.getElementById("studentName").value;
+
+    let student =
+    students.find(s => s.name === name);
+
+    if(student){
+
+        document.getElementById("studentClass").value =
+        student.class;
+
+    }
+
+}
