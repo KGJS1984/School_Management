@@ -1,76 +1,70 @@
 let teacherPhotoData = "";
-function saveTeacher(){
 
-    console.log("Saving teacher...");
-    
+// =========================
+// Save Teacher
+// =========================
+function saveTeacher() {
+
     let teacher = {
-    id: Date.now(),
-    name: document.getElementById("teacherName").value,
-    designation: document.getElementById("designation").value,
-    mobile: document.getElementById("teacherMobile").value,
-    email: document.getElementById("teacherEmail").value,
-    photo: teacherPhotoData
-};
+        id: Date.now(),
+        name: document.getElementById("teacherName").value,
+        designation: document.getElementById("designation").value,
+        mobile: document.getElementById("teacherMobile").value,
+        email: document.getElementById("teacherEmail").value,
+        photo: teacherPhotoData
+    };
 
     let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
-
     let editIndex = localStorage.getItem("teacherEditIndex");
 
-    if(editIndex !== null){
-
+    if (editIndex !== null) {
         teachers[editIndex] = teacher;
-
         localStorage.removeItem("teacherEditIndex");
-
         alert("✅ Teacher Updated Successfully");
-
-    }else{
-
+    } else {
         teachers.push(teacher);
-
         alert("✅ Teacher Saved Successfully");
-
     }
 
     localStorage.setItem("teachers", JSON.stringify(teachers));
 
     document.querySelector("form").reset();
     teacherPhotoData = "";
-document.getElementById("teacherPhotoPreview").src =
-"https://via.placeholder.com/120";
+
+    if(document.getElementById("teacherPhotoPreview")){
+        document.getElementById("teacherPhotoPreview").src =
+        "https://via.placeholder.com/120";
+    }
 
     window.location.href = "teachers_list.html";
-
 }
-// =========================
-// Teacher List
-// =========================
 
-function loadTeachers() {
-    
-    console.log(JSON.parse(localStorage.getItem("teachers")));
+// =========================
+// Load Teacher List
+// =========================
+function loadTeachers(){
+
+    let table = document.getElementById("teacherTable");
+    if(!table) return;
 
     let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
 
-    let table = document.getElementById("teacherTable");
-if (!table) return;
-
-let searchBox = document.getElementById("searchTeacher");
-let search = searchBox ? searchBox.value.toLowerCase() : "";
+    let searchBox = document.getElementById("searchTeacher");
+    let search = searchBox ? searchBox.value.toLowerCase() : "";
 
     table.innerHTML = "";
 
-    teachers.forEach((teacher, index) => {
+    teachers.forEach((teacher,index)=>{
 
-        if (
+        if(
             teacher.name.toLowerCase().includes(search) ||
             teacher.designation.toLowerCase().includes(search)
-        ) {
+        ){
 
             table.innerHTML += `
             <tr>
 
-            <td>${index + 1}</td>
+            <td>${index+1}</td>
 
             <td>${teacher.name}</td>
 
@@ -82,27 +76,15 @@ let search = searchBox ? searchBox.value.toLowerCase() : "";
 
             <td>
 
-<button class="btn btn-primary btn-sm"
-onclick="teacherID(${index})">
-🪪 ID Card
-</button>
+            <button class="btn btn-primary btn-sm" onclick="teacherID(${index})">🪪 ID</button>
 
-<button class="btn btn-info btn-sm"
-onclick="viewTeacherProfile(${index})">
-Profile
-</button>
+            <button class="btn btn-info btn-sm" onclick="viewTeacherProfile(${index})">Profile</button>
 
-<button class="btn btn-warning btn-sm"
-onclick="editTeacher(${index})">
-Edit
-</button>
+            <button class="btn btn-warning btn-sm" onclick="editTeacher(${index})">Edit</button>
 
-<button class="btn btn-danger btn-sm"
-onclick="deleteTeacher(${index})">
-Delete
-</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteTeacher(${index})">Delete</button>
 
-</td>
+            </td>
 
             </tr>
             `;
@@ -112,6 +94,9 @@ Delete
 
 }
 
+// =========================
+// Delete Teacher
+// =========================
 function deleteTeacher(index){
 
     if(confirm("Delete this teacher?")){
@@ -128,6 +113,9 @@ function deleteTeacher(index){
 
 }
 
+// =========================
+// Edit Teacher
+// =========================
 function editTeacher(index){
 
     localStorage.setItem("teacherEditIndex",index);
@@ -135,54 +123,34 @@ function editTeacher(index){
     window.location.href="teachers.html";
 
 }
+
+// =========================
+// Profile
+// =========================
 function viewTeacherProfile(index){
 
-    localStorage.setItem("teacherProfileIndex", index);
+    localStorage.setItem("teacherProfileIndex",index);
 
-    window.location.href = "teachers_profile.html";
+    window.location.href="teachers_profile.html";
 
-        }
+}
+
+// =========================
+// Teacher ID
+// =========================
+function teacherID(index){
+
+    localStorage.setItem("teacherProfileIndex",index);
+
+    window.location.href="teachers_incard.html";
+
+}
+
+// =========================
+// Photo Preview
+// =========================
 function previewTeacherPhoto(event){
 
     let reader = new FileReader();
 
-    reader.onload = function(){
-
-        teacherPhotoData = reader.result;
-
-        document.getElementById("teacherPhotoPreview").src = teacherPhotoData;
-
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
-
-}
-function teacherID(index){
-
-    localStorage.setItem("teacherProfileIndex", index);
-
-    window.location.href = "teachers_incard.html";
-
-}
-window.addEventListener("load", function () {
-
-    let editIndex = localStorage.getItem("teacherEditIndex");
-
-    if (editIndex !== null && document.getElementById("teacherName")) {
-
-        let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
-        let t = teachers[editIndex];
-
-        document.getElementById("teacherName").value = t.name;
-        document.getElementById("designation").value = t.designation;
-        document.getElementById("teacherMobile").value = t.mobile;
-        document.getElementById("teacherEmail").value = t.email;
-
-        if (t.photo) {
-            teacherPhotoData = t.photo;
-            document.getElementById("teacherPhotoPreview").src = t.photo;
-        }
-    }
-
-    loadTeachers();
-});
+    reader.onload=function
