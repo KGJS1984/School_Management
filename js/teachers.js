@@ -93,6 +93,7 @@ function previewTeacherPhoto(event){
     }
 
 }
+
 // =========================
 // Teacher List + Smart Search
 // =========================
@@ -172,7 +173,8 @@ function loadTeachers(){
 
     });
 
-}
+            }
+
 // =========================
 // Edit Teacher
 // =========================
@@ -274,3 +276,78 @@ window.onload = function(){
     }
 
 };
+
+// =========================
+// Smart Search Suggestions
+// =========================
+
+function loadTeacherSuggestions(){
+
+    let teachers =
+    JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let input =
+    document.getElementById("searchTeacher");
+
+    let list =
+    document.getElementById("teacherSuggestion");
+
+    if(!input || !list) return;
+
+    let keyword = input.value.toLowerCase();
+
+    list.innerHTML = "";
+
+    if(keyword=="") return;
+
+    teachers.forEach((teacher)=>{
+
+        if(
+            teacher.name.toLowerCase().includes(keyword) ||
+            teacher.designation.toLowerCase().includes(keyword) ||
+            teacher.mobile.toLowerCase().includes(keyword)
+        ){
+
+            let option = document.createElement("option");
+
+            option.value = teacher.name;
+
+            list.appendChild(option);
+
+        }
+
+    });
+
+}
+
+// =========================
+// Dashboard Count Update
+// =========================
+
+function updateTeacherCount(){
+
+    let teachers =
+    JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let count =
+    document.getElementById("teacherCount");
+
+    if(count){
+
+        count.innerHTML = teachers.length;
+
+    }
+
+}
+
+// =========================
+// Initialize
+// =========================
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    loadTeachers();
+
+    updateTeacherCount();
+
+});
