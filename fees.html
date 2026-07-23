@@ -28,7 +28,17 @@
 
 <div class="col-md-6 mb-3">
 <label>Student Name</label>
-<input type="text" id="studentName" class="form-control" required>
+
+  <input
+type="text"
+id="studentName"
+class="form-control"
+list="studentList"
+onkeyup="loadStudentSuggestions()"
+autocomplete="off">
+
+<datalist id="studentList"></datalist>
+  
 </div>
 
 <div class="col-md-6 mb-3">
