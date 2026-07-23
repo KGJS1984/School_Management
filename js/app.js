@@ -1569,3 +1569,21 @@ window.addEventListener("load", function(){
     loadTeacherProfile();
 
 });
+
+// Class Count
+let classes = JSON.parse(localStorage.getItem("classes")) || [];
+
+let classCount = document.getElementById("classCount");
+
+if (classCount) {
+    classCount.innerText = classes.length;
+}
+
+// Subject Count
+let subjects = JSON.parse(localStorage.getItem("subjects")) || [];
+
+let subjectCount = document.getElementById("subjectCount");
+
+if (subjectCount) {
+    subjectCount.innerText = subjects.length;
+}
