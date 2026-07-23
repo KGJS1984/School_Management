@@ -1362,3 +1362,210 @@ window.addEventListener("load", function () {
     loadFees();
 
 });
+// ======================================================
+// Part-7 : Profile, ID Card, Backup & Export
+// ======================================================
+
+// =========================
+// Student Profile
+// =========================
+function loadProfile() {
+
+    let index = localStorage.getItem("profileIndex");
+
+    if (index == null) return;
+
+    let students = getData("students");
+
+    let s = students[index];
+
+    if (!s) return;
+
+    document.getElementById("profileName").innerHTML = s.name;
+    document.getElementById("profileFather").innerHTML = s.father;
+    document.getElementById("profileMother").innerHTML = s.mother;
+    document.getElementById("profileClass").innerHTML = s.class;
+    document.getElementById("profileRoll").innerHTML = s.roll;
+    document.getElementById("profileMobile").innerHTML = s.mobile;
+    document.getElementById("profileAddress").innerHTML = s.address;
+
+    let img = document.getElementById("profilePhoto");
+
+    if (img) {
+
+        img.src = s.photo || "images/user.png";
+
+    }
+
+}
+
+// =========================
+// Teacher Profile
+// =========================
+function loadTeacherProfile() {
+
+    let index = localStorage.getItem("teacherProfileIndex");
+
+    if (index == null) return;
+
+    let teachers = getData("teachers");
+
+    let t = teachers[index];
+
+    if (!t) return;
+
+    document.getElementById("teacherProfileName").innerHTML = t.name;
+    document.getElementById("teacherDesignation").innerHTML = t.designation;
+    document.getElementById("teacherSubject").innerHTML = t.subject;
+    document.getElementById("teacherMobile").innerHTML = t.mobile;
+    document.getElementById("teacherEmail").innerHTML = t.email;
+    document.getElementById("teacherAddress").innerHTML = t.address;
+
+    let img = document.getElementById("teacherPhoto");
+
+    if (img) {
+
+        img.src = t.photo || "images/user.png";
+
+    }
+
+}
+
+// =========================
+// Student ID Card
+// =========================
+function printStudentCard() {
+
+    window.print();
+
+}
+
+// =========================
+// Teacher ID Card
+// =========================
+function printTeacherCard() {
+
+    window.print();
+
+}
+
+// =========================
+// Backup Data
+// =========================
+function backupData() {
+
+    const data = {
+
+        students: getData("students"),
+
+        teachers: getData("teachers"),
+
+        attendance: localStorage,
+
+        results: getData("results"),
+
+        fees: getData("fees")
+
+    };
+
+    const blob = new Blob(
+
+        [JSON.stringify(data, null, 2)],
+
+        {
+
+            type: "application/json"
+
+        }
+
+    );
+
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+
+    link.download = "School_Backup.json";
+
+    link.click();
+
+}
+
+// =========================
+// Restore Backup
+// =========================
+function restoreData(file) {
+
+    let reader = new FileReader();
+
+    reader.onload = function(e){
+
+        let data = JSON.parse(e.target.result);
+
+        if(data.students)
+            saveData("students", data.students);
+
+        if(data.teachers)
+            saveData("teachers", data.teachers);
+
+        if(data.results)
+            saveData("results", data.results);
+
+        if(data.fees)
+            saveData("fees", data.fees);
+
+        alert("Backup Restored Successfully");
+
+        location.reload();
+
+    };
+
+    reader.readAsText(file);
+
+}
+
+// =========================
+// Export Students CSV
+// =========================
+function exportStudentsCSV() {
+
+    let students = getData("students");
+
+    let csv = "Name,Class,Roll,Mobile\n";
+
+    students.forEach(s=>{
+
+        csv += `${s.name},${s.class},${s.roll},${s.mobile}\n`;
+
+    });
+
+    let blob = new Blob([csv], {type:"text/csv"});
+
+    let a = document.createElement("a");
+
+    a.href = URL.createObjectURL(blob);
+
+    a.download = "Students.csv";
+
+    a.click();
+
+}
+
+// =========================
+// Print Any Page
+// =========================
+function printPage() {
+
+    window.print();
+
+}
+
+// =========================
+// Auto Load
+// =========================
+window.addEventListener("load", function(){
+
+    loadProfile();
+
+    loadTeacherProfile();
+
+});
