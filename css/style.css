@@ -114,3 +114,115 @@ body{
 }
 
 }
+/* =========================
+   Mobile Responsive
+========================= */
+
+body{
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+.table-responsive{
+    overflow-x:auto;
+}
+
+.card{
+    border-radius:12px;
+}
+
+.sidebar{
+
+    width:250px;
+
+    transition:.3s;
+
+}
+
+@media(max-width:992px){
+
+.sidebar{
+
+position:fixed;
+
+left:-250px;
+
+top:0;
+
+height:100%;
+
+z-index:999;
+
+background:#0d6efd;
+
+}
+
+.sidebar.show{
+
+left:0;
+
+}
+
+.content{
+
+margin-left:0!important;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.card{
+
+margin-bottom:15px;
+
+}
+
+h1,h2,h3{
+
+font-size:22px;
+
+}
+
+.btn{
+
+width:100%;
+
+margin-top:5px;
+
+}
+
+table{
+
+font-size:14px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.navbar-brand{
+
+font-size:18px;
+
+}
+
+.card-body{
+
+padding:15px;
+
+}
+
+.form-control{
+
+font-size:14px;
+
+}
+
+}
