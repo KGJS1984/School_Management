@@ -22,3 +22,24 @@ function saveFee() {
     document.querySelector("form").reset();
 
 }
+function loadStudentSuggestions(){
+
+    let students =
+    JSON.parse(localStorage.getItem("students")) || [];
+
+    let list =
+    document.getElementById("studentList");
+
+    if(!list) return;
+
+    list.innerHTML = "";
+
+    students.forEach(student=>{
+
+        list.innerHTML += `
+        <option value="${student.name}">
+        `;
+
+    });
+
+}
