@@ -62,6 +62,7 @@ function fillStudentInfo(){
     }
 
 }
+
 function fillStudentInfo(){
 
     let students =
@@ -75,8 +76,8 @@ function fillStudentInfo(){
 
     if(student){
 
-        document.getElementById("studentClass").value =
-        student.class;
+        document.getElementById("studentClass").value = student.class;
+        document.getElementById("studentRoll").value = student.roll;
 
     }
 
