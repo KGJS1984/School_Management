@@ -1,6 +1,8 @@
 let teacherPhotoData = "";
 function saveTeacher(){
 
+    console.log("Saving teacher...");
+    
     let teacher = {
     id: Date.now(),
     name: document.getElementById("teacherName").value,
@@ -45,6 +47,8 @@ document.getElementById("teacherPhotoPreview").src =
 // =========================
 
 function loadTeachers() {
+    
+    console.log(JSON.parse(localStorage.getItem("teachers")));
 
     let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
 
@@ -182,3 +186,4 @@ window.addEventListener("load", function () {
     }
 
 });
+window.addEventListener("load", loadTeachers);
