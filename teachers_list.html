@@ -21,7 +21,11 @@ type="text"
 id="searchTeacher"
 class="form-control mb-3"
 placeholder="🔍 Search Teacher..."
-onkeyup="loadTeachers()">
+list="teacherSuggestion"
+onkeyup="loadTeachers();loadTeacherSuggestions()"
+autocomplete="off">
+
+<datalist id="teacherSuggestion"></datalist>
 
 <div class="table-responsive">
 
