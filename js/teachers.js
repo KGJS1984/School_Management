@@ -64,6 +64,7 @@ function saveTeacher(){
         img.src = "https://via.placeholder.com/120";
     }
 
+    console.log(localStorage.getItem("teachers"));
     window.location.href="teachers_list.html";
 
 }
@@ -303,10 +304,17 @@ function loadTeacherSuggestions(){
     teachers.forEach((teacher)=>{
 
         if(
-            teacher.name.toLowerCase().includes(keyword) ||
-            teacher.designation.toLowerCase().includes(keyword) ||
-            teacher.mobile.toLowerCase().includes(keyword)
-        ){
+            const name = (teacher.name || "").toLowerCase();
+const designation = (teacher.designation || "").toLowerCase();
+const mobile = (teacher.mobile || "").toLowerCase();
+const email = (teacher.email || "").toLowerCase();
+
+if (
+    name.includes(search) ||
+    designation.includes(search) ||
+    mobile.includes(search) ||
+    email.includes(search)
+)
 
             let option = document.createElement("option");
 
