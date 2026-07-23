@@ -168,10 +168,9 @@ window.addEventListener("load", function () {
 
     let editIndex = localStorage.getItem("teacherEditIndex");
 
-    if (editIndex !== null) {
+    if (editIndex !== null && document.getElementById("teacherName")) {
 
         let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
-
         let t = teachers[editIndex];
 
         document.getElementById("teacherName").value = t.name;
@@ -185,5 +184,5 @@ window.addEventListener("load", function () {
         }
     }
 
+    loadTeachers();
 });
-window.addEventListener("load", loadTeachers);
