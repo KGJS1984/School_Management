@@ -13,6 +13,7 @@ function saveResult() {
         bangla: Number(document.getElementById("bangla").value),
         english: Number(document.getElementById("english").value),
         math: Number(document.getElementById("math").value)
+        window.location.href = "results_list.html";
     };
 window.location.href="results.html";
     result.total =
