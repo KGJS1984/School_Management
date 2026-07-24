@@ -64,3 +64,88 @@ function saveTeacher() {
 
     window.location.href = "teachers_list.html";
 }
+
+// =========================
+// Load Teachers
+// =========================
+
+function loadTeachers() {
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let table = document.getElementById("teacherTable");
+
+    if (!table) return;
+
+    let search = "";
+
+    let searchBox = document.getElementById("searchTeacher");
+
+    if (searchBox) {
+        search = searchBox.value.toLowerCase();
+    }
+
+    table.innerHTML = "";
+
+    teachers.forEach((teacher, index) => {
+
+        if (
+            teacher.name.toLowerCase().includes(search) ||
+            teacher.designation.toLowerCase().includes(search) ||
+            teacher.mobile.toLowerCase().includes(search) ||
+            teacher.email.toLowerCase().includes(search)
+        ) {
+
+            table.innerHTML += `
+            <tr>
+
+                <td>${index + 1}</td>
+
+                <td>
+                    ${teacher.photo ?
+                    `<img src="${teacher.photo}"
+                    width="40"
+                    height="40"
+                    style="border-radius:50%;margin-right:8px;">`
+                    : ""}
+                    ${teacher.name}
+                </td>
+
+                <td>${teacher.designation}</td>
+
+                <td>${teacher.mobile}</td>
+
+                <td>${teacher.email}</td>
+
+                <td>
+
+                    <button class="btn btn-primary btn-sm"
+                    onclick="teacherID(${index})">
+                    🪪
+                    </button>
+
+                    <button class="btn btn-info btn-sm"
+                    onclick="viewTeacherProfile(${index})">
+                    👤
+                    </button>
+
+                    <button class="btn btn-warning btn-sm"
+                    onclick="editTeacher(${index})">
+                    ✏️
+                    </button>
+
+                    <button class="btn btn-danger btn-sm"
+                    onclick="deleteTeacher(${index})">
+                    🗑️
+                    </button>
+
+                </td>
+
+            </tr>
+            `;
+
+        }
+
+    });
+
+                      }
