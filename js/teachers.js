@@ -374,17 +374,3 @@ function clearTeachers(){
     }
 
 }
-
-// =========================
-// Final Initialize
-// =========================
-
-document.addEventListener("DOMContentLoaded",function(){
-
-    loadTeachers();
-
-    updateTeacherCount();
-
-    loadTeacherSuggestions();
-
-});
