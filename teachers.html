@@ -244,3 +244,162 @@ onsubmit="saveTeacher();return false;">
               rows="3"
               placeholder="Teacher Address"></textarea>
         </div>
+<!-- ========================= -->
+<!-- Teacher Photo -->
+<!-- ========================= -->
+
+<div class="col-md-4 mb-4 text-center">
+
+    <label class="form-label fw-bold">
+        Teacher Photo
+    </label>
+
+    <div class="photo-box mb-3">
+
+        <img id="teacherPhotoPreview"
+             src="https://via.placeholder.com/150"
+             alt="Teacher Photo">
+
+    </div>
+
+    <input type="file"
+           id="teacherPhoto"
+           class="form-control"
+           accept="image/*"
+           onchange="previewTeacherPhoto(event)">
+
+</div>
+
+<!-- ========================= -->
+<!-- Teacher Status -->
+<!-- ========================= -->
+
+<div class="col-md-8">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Employment Status
+</label>
+
+<select id="teacherStatus"
+class="form-select">
+
+<option value="Active">🟢 Active</option>
+
+<option value="Inactive">🔴 Inactive</option>
+
+<option value="On Leave">🟡 On Leave</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Teacher ID
+</label>
+
+<input type="text"
+id="teacherID"
+class="form-control"
+placeholder="Auto Generated"
+readonly>
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<div class="alert alert-success">
+
+<b>Information:</b>
+
+Teacher ID will be generated automatically after saving.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Buttons -->
+<!-- ========================= -->
+
+<div class="col-12 mt-4">
+
+<hr>
+
+<div class="d-flex flex-wrap gap-2 justify-content-center">
+
+<button
+type="submit"
+class="btn btn-success btn-lg">
+
+💾 Save Teacher
+
+</button>
+
+<button
+type="reset"
+class="btn btn-warning btn-lg">
+
+🔄 Reset
+
+</button>
+
+<a href="teachers_list.html"
+class="btn btn-primary btn-lg">
+
+👨‍🏫 Teacher List
+
+</a>
+
+<a href="dashboard.html"
+class="btn btn-secondary btn-lg">
+
+🏠 Dashboard
+
+</a>
+
+</div>
+
+</div>
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="js/teachers.js"></script>
+
+<script>
+
+// Auto Teacher ID
+
+document.addEventListener("DOMContentLoaded",function(){
+
+let id=document.getElementById("teacherID");
+
+if(id){
+
+id.value="TCH-"+Date.now().toString().slice(-6);
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
