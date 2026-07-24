@@ -256,3 +256,135 @@ window.addEventListener("DOMContentLoaded", function(){
     }
 
 });
+
+// =========================
+// Smart Search Suggestion
+// =========================
+
+function loadTeacherSuggestions(){
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let input = document.getElementById("searchTeacher");
+    let list = document.getElementById("teacherSuggestion");
+
+    if(!input || !list) return;
+
+    let keyword = input.value.toLowerCase();
+
+    list.innerHTML = "";
+
+    if(keyword === "") return;
+
+    teachers.forEach((teacher)=>{
+
+        if(
+            teacher.name.toLowerCase().includes(keyword) ||
+            teacher.designation.toLowerCase().includes(keyword) ||
+            teacher.mobile.toLowerCase().includes(keyword) ||
+            teacher.email.toLowerCase().includes(keyword)
+        ){
+
+            let option = document.createElement("option");
+
+            option.value = teacher.name;
+
+            list.appendChild(option);
+
+        }
+
+    });
+
+}
+
+// =========================
+// Find Teacher By ID
+// =========================
+
+function getTeacher(index){
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    return teachers[index];
+
+}
+
+// =========================
+// Recent Teachers
+// =========================
+
+function getRecentTeachers(limit = 5){
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    return teachers.slice(-limit).reverse();
+
+}
+
+// =========================
+// Export Teachers
+// =========================
+
+function exportTeachers(){
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    if(teachers.length===0){
+
+        alert("No teacher found.");
+
+        return;
+
+    }
+
+    let data = JSON.stringify(teachers,null,2);
+
+    let blob = new Blob([data],{type:"application/json"});
+
+    let url = URL.createObjectURL(blob);
+
+    let a=document.createElement("a");
+
+    a.href=url;
+
+    a.download="teachers_backup.json";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+// =========================
+// Clear Teacher Data
+// =========================
+
+function clearTeachers(){
+
+    if(confirm("Delete all teachers?")){
+
+        localStorage.removeItem("teachers");
+
+        loadTeachers();
+
+        updateTeacherCount();
+
+        alert("All teachers deleted.");
+
+    }
+
+}
+
+// =========================
+// Final Initialize
+// =========================
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    loadTeachers();
+
+    updateTeacherCount();
+
+    loadTeacherSuggestions();
+
+});
