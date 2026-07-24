@@ -90,10 +90,10 @@ function loadTeachers() {
     teachers.forEach((teacher, index) => {
 
         if (
-            teacher.name.toLowerCase().includes(search) ||
-            teacher.designation.toLowerCase().includes(search) ||
-            teacher.mobile.toLowerCase().includes(search) ||
-            teacher.email.toLowerCase().includes(search)
+            (teacher.name || "").toLowerCase().includes(search)
+            (teacher.designation || "").toLowerCase().includes(search)
+            (teacher.mobile || "").toLowerCase().includes(search)
+            (teacher.email || "").toLowerCase().includes(search)
         ) {
 
             table.innerHTML += `
