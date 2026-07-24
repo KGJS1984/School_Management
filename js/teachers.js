@@ -149,3 +149,110 @@ function loadTeachers() {
     });
 
                       }
+
+// =========================
+// Edit Teacher
+// =========================
+function editTeacher(index){
+
+    localStorage.setItem("teacherEditIndex", index);
+
+    window.location.href = "teachers.html";
+
+}
+
+// =========================
+// Delete Teacher
+// =========================
+function deleteTeacher(index){
+
+    if(confirm("Are you sure to delete this teacher?")){
+
+        let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+        teachers.splice(index,1);
+
+        localStorage.setItem("teachers", JSON.stringify(teachers));
+
+        loadTeachers();
+
+        updateTeacherCount();
+
+    }
+
+}
+
+// =========================
+// Teacher Profile
+// =========================
+function viewTeacherProfile(index){
+
+    localStorage.setItem("teacherProfileIndex", index);
+
+    window.location.href = "teachers_profile.html";
+
+}
+
+// =========================
+// Teacher ID Card
+// =========================
+function teacherID(index){
+
+    localStorage.setItem("teacherProfileIndex", index);
+
+    window.location.href = "teachers_incard.html";
+
+}
+
+// =========================
+// Dashboard Teacher Count
+// =========================
+function updateTeacherCount(){
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+    let count = document.getElementById("teacherCount");
+
+    if(count){
+
+        count.innerHTML = teachers.length;
+
+    }
+
+}
+
+// =========================
+// Auto Load
+// =========================
+window.addEventListener("DOMContentLoaded", function(){
+
+    loadTeachers();
+
+    updateTeacherCount();
+
+    let editIndex = localStorage.getItem("teacherEditIndex");
+
+    if(editIndex !== null && document.getElementById("teacherName")){
+
+        let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+        let t = teachers[editIndex];
+
+        if(!t) return;
+
+        document.getElementById("teacherName").value = t.name;
+        document.getElementById("designation").value = t.designation;
+        document.getElementById("teacherMobile").value = t.mobile;
+        document.getElementById("teacherEmail").value = t.email;
+
+        if(t.photo){
+
+            teacherPhotoData = t.photo;
+
+            document.getElementById("teacherPhotoPreview").src = t.photo;
+
+        }
+
+    }
+
+});
