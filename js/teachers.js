@@ -1,3 +1,4 @@
+alert("teachers.js Loaded");
 // ---------- Save Teacher ----------
 function saveTeacher() {
 
